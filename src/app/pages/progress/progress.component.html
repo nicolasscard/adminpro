@@ -1,3 +1,51 @@
-<p>
-  progress works!
-</p>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+
+        <h4 class="card-title">Barra de progreso - {{progreso1}}</h4>
+
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" [attr.ariavaluenow]="progreso1" aria-valuemin="0" aria-valuemax="100" [style.width]="progreso1 + '%'"></div>
+        </div>
+        <br>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" [attr.ariavaluenow]="progreso2" aria-valuemin="0" aria-valuemax="100" [style.width]="progreso2 + '%'"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-6">
+    <div class="card">
+      <div class="card-body">
+        <!-- Input-Output: Para enviar y recibir variables, utilizo la etiqueta
+            con la q llamo al componente, en este caso <app-progress>
+                - sin corchetes significa que voy a enviarle un string directamente
+                - con corchetes estoy especificando un tipo
+            Output
+                - debo utilizar un evento como si fuera el click, pero con el nombre del EventEmitter
+                    que yo defini
+                - debo indicar q funcion va a capturar el evento, en este caso 'actualizar'
+                - debo poner si o si el '$event' como parametro de la funcion
+        -->
+        <app-incrementador (actualizarValor)="actualizar( $event )" nombre="Leyenda azul" [progreso]="progreso1"></app-incrementador>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="card">
+      <div class="card-body">
+          <!--
+            Si únicamente voy a actualizar una variable no es necesario llamar a una funcion
+            puedo directamente asignarle el valor del evento a nuestra variable
+          -->
+          <app-incrementador (actualizarValor)="progreso2 = $event" nombre="Leyenda verde" [progreso]="progreso2"></app-incrementador>
+      </div>
+    </div>
+  </div>
+</div>

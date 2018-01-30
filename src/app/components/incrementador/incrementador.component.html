@@ -1,0 +1,26 @@
+<h3>
+    {{leyenda}} - {{progreso}}
+</h3>
+
+<div class="input-group">
+  <span class="input-group-btn">
+              <button class="btn btn-primary" type="button" (click)="cambiarValor(-5)">
+                  <i class="mdi mdi-minus"></i>
+              </button>
+  </span>
+
+  <!--
+    (ngModelChange): Es un evento predeterminado q se ejecuta cad vez que hay un cambio en el campo definido por ngModelChange
+        Yo puedo utilizarlo para definir una funcion q se ejecute cuando es disparado
+        en este caso 'onChange($event)'
+        - Siempre q llamo a una funcion a partir de un evento, tengo q enviarle por parametros el evento
+    ViewChild: Al definir #nombre  le estoy dando la identificacion para poder definirlo como variable
+  -->
+  <input #txtProgress type="number" class="form-control" [(ngModel)]="progreso" (ngModelChange)="onChanges($event)" min="1" max="100">
+
+  <span class="input-group-btn">
+      <button class="btn btn-primary" type="button" (click)="cambiarValor(+5)">
+          <i class="mdi mdi-plus"></i>
+      </button>
+  </span>
+</div>
