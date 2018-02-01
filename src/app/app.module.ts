@@ -1,12 +1,17 @@
+//Angular Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {RouterModule} from '@angular/router';
 
 //Routes
 import {APP_ROUTES} from './app.routes';
 
-//Modules
+//Personals Modules
 import {PagesModule} from './pages/pages.module';
-import {FormsModule} from '@angular/forms';
+/*temporal*/import {FormsModule} from '@angular/forms';
+
+//Services
+import {ServiceModule} from './services/service.module';
 
 //Components
 import { AppComponent } from './app.component';
@@ -17,20 +22,21 @@ import { RegisterComponent } from './login/register.component';
 
 
 @NgModule({
-  declarations: [
+  imports: [  //Guardo modulos
+    BrowserModule,
+    APP_ROUTES,
+    PagesModule, //SharedModule esta incluido dentro de PagesModule, por lo que no es necesario volverlo a incluir
+    FormsModule,
+    ServiceModule //Como es un módulo debo incluirlo aquí también
+  ],
+  declarations: [ //Guardo Components
     AppComponent,
     LoginComponent,
     RegisterComponent,
     //GraficoDonaComponent,
     //IncrementadorComponent
   ],
-  imports: [  //Guardo todos los modulos que voy utilizando
-    BrowserModule,
-    APP_ROUTES,
-    PagesModule, //SharedModule esta incluido dentro de PagesModule, por lo que no es necesario volverlo a incluir
-    FormsModule
-  ],
-  providers: [],
+  providers: [],  // Guardo Servicios
   bootstrap: [AppComponent]
 })
 export class AppModule { }
